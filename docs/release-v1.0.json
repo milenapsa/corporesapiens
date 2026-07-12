@@ -1,6 +1,7 @@
 {
   "version": "1.0.0",
-  "status": "release_candidate_validated",
+  "status": "published",
+  "published_at": "2026-07-12T21:45:36Z",
   "source_versions": [
     "0.2",
     "0.3",
@@ -11,7 +12,14 @@
     "0.8",
     "0.9"
   ],
-  "browser_acceptance": "V10_BROWSER_ACCEPTANCE_OK",
+  "browser_acceptance": "V10_PUBLIC_BROWSER_OFFLINE_ACCEPTANCE_OK",
+  "static_acceptance": "V10_FINAL_STATIC_ACCEPTANCE_OK",
   "data_compatibility": "corporesapiens_state_v02 preserved",
-  "build_script": "scripts/build-v10.sh"
+  "offline_validation": true,
+  "build_script": "scripts/build-v10.sh",
+  "rollback": {
+    "snapshot_id": 297218,
+    "backup": "/docker/corporesapiens/backups/20260712214536-v10-pre",
+    "previous": "/docker/corporesapiens/site.previous-v09"
+  }
 }
