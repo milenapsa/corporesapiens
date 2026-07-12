@@ -12,32 +12,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate required files
-        run: |
-          set -euo pipefail
-          for f in index.html styles.css app-core.js app-smart.js manifest.webmanifest sw.js icon.svg; do
-            test -s "$f"
-          done
-
-      - name: Validate JavaScript syntax
+      - name: Validate source JavaScript
         run: |
           set -euo pipefail
           for f in app-core.js app-smart.js app-v*.js; do
             node --check "$f"
           done
 
-      - name: Validate HTML references
+      - name: Build consolidated 1.0
         run: |
-          set -euo pipefail
-          grep -q 'app-v09.js' index.html
-          grep -q 'styles-v09.css' index.html
+          chmod +x scripts/build-v10.sh
+          scripts/build-v10.sh . dist-v10
 
-      - name: Validate service worker
+      - name: Validate consolidated output
         run: |
           set -euo pipefail
-          grep -q 'corporesapiens-v0.9.0' sw.js
-          grep -q 'app-v09.js' sw.js
-          grep -q 'styles-v09.css' sw.js
+          test -s dist-v10/app-v10.js
+          test -s dist-v10/styles-v10.css
+          node --check dist-v10/app-v10.js
+          grep -q 'app-v10.js' dist-v10/index.html
+          grep -q 'styles-v10.css' dist-v10/index.html
+          grep -q 'corporesapiens-v1.0.0' dist-v10/sw.js
+          grep -q '"./app-v10.js"' dist-v10/sw.js
+          grep -q '"./styles-v10.css"' dist-v10/sw.js
 
       - name: Validate documentation
         run: |
@@ -45,3 +42,4 @@ jobs:
           test -s docs/CANONICO.md
           test -s docs/corporesapiens.json
           test -s docs/CHANGELOG.md
+          test -s docs/release-v1.0.json
