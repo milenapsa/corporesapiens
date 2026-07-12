@@ -1,0 +1,5 @@
+
+.v08-card{border-color:rgba(34,211,238,.38);background:linear-gradient(180deg,rgba(8,48,57,.96),rgba(10,24,40,.98))}
+.v08-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.v08-warning{padding:12px;border:1px solid rgba(251,191,36,.38);border-radius:13px;background:rgba(69,42,6,.42);color:#fde68a}
+@media(max-width:520px){.v08-actions{grid-template-columns:1fr}}
