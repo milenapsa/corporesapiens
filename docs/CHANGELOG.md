@@ -1,5 +1,17 @@
 # Changelog — Corporesapiens
 
+## 1.0.0
+- consolidação dos módulos JavaScript 0.2–0.9 em `app-v10.js`;
+- consolidação dos estilos em `styles-v10.css`;
+- redução das referências públicas para um JavaScript e um CSS;
+- preservação das chaves de armazenamento e dos dados da 0.9;
+- Service Worker corrigido com cache exclusivo dos ativos 1.0;
+- teste de navegador real;
+- validação de carregamento offline;
+- diretório persistente e somente leitura no contêiner;
+- receita reproduzível em `scripts/build-v10.sh`;
+- snapshot, backup e rollback registrados.
+
 ## 0.9.0
 - resumo técnico do aplicativo;
 - verificação manual de atualização;
