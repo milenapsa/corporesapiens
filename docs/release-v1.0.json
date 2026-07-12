@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "status": "release_candidate_validated",
+  "source_versions": [
+    "0.2",
+    "0.3",
+    "0.4",
+    "0.5",
+    "0.6",
+    "0.7",
+    "0.8",
+    "0.9"
+  ],
+  "browser_acceptance": "V10_BROWSER_ACCEPTANCE_OK",
+  "data_compatibility": "corporesapiens_state_v02 preserved",
+  "build_script": "scripts/build-v10.sh"
+}
