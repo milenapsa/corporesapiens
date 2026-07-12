@@ -1,0 +1,47 @@
+{
+  "schema": "corporesapiens.product-registry.v1",
+  "product": {
+    "name": "Corporesapiens",
+    "version": "0.5.0",
+    "url": "https://corporesapiens.homosapiens.id",
+    "repository": "milenapsa/corporesapiens",
+    "type": "PWA",
+    "language": "pt-BR",
+    "data_mode": "local-first"
+  },
+  "runtime": {
+    "container": "corporesapiens",
+    "web_server": "nginx",
+    "reverse_proxy": "caddy",
+    "https": true,
+    "offline": true
+  },
+  "assets": [
+    "index.html",
+    "styles.css",
+    "styles-v03.css",
+    "styles-v04.css",
+    "styles-v05.css",
+    "app-core.js",
+    "app-smart.js",
+    "app-v03.js",
+    "app-v04.js",
+    "app-v05.js",
+    "manifest.webmanifest",
+    "sw.js",
+    "icon.svg"
+  ],
+  "storage_keys": [
+    "corporesapiens_state_v02",
+    "corporesapiens_v04_preferences",
+    "corporesapiens_v05_settings"
+  ],
+  "release_gate": {
+    "backup_required": true,
+    "syntax_check": true,
+    "https_200": true,
+    "asset_200": true,
+    "service_worker_version": "corporesapiens-v0.5.0",
+    "rollback_required": true
+  }
+}
