@@ -1,0 +1,21 @@
+
+.v04-card{border-color:rgba(167,139,250,.42);background:linear-gradient(180deg,rgba(31,27,57,.98),rgba(12,24,42,.98))}
+.v04-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.goal-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:14px 0 10px}
+.goal-ring{--value:0;display:grid;place-items:center;width:70px;height:70px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--value)*1%),rgba(148,163,184,.16) 0);position:relative}
+.goal-ring:before{content:"";position:absolute;inset:7px;border-radius:50%;background:#111c2d}
+.goal-ring b{position:relative;font-size:.84rem}
+.goal-track{height:9px;border-radius:999px;background:rgba(148,163,184,.15);overflow:hidden}
+.goal-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--accent),#a78bfa)}
+.achievement-preview{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.achievement-grid{display:grid;gap:9px}
+.achievement{display:flex;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:14px;background:rgba(7,17,31,.68);opacity:.62}
+.achievement.earned{opacity:1;border-color:rgba(74,222,128,.38)}
+.achievement-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(148,163,184,.12);font-weight:900}
+.achievement.earned .achievement-icon{background:rgba(74,222,128,.16);color:var(--accent)}
+.v04-session-strip{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:10px 13px;margin-bottom:10px;border:1px solid rgba(74,222,128,.34);border-radius:13px;background:rgba(7,17,31,.94);backdrop-filter:blur(12px)}
+.focus-mode .topbar,.focus-mode #homeView,.focus-mode #toolsView,.focus-mode #progressView,.focus-mode #moreView{display:none!important}
+.focus-mode .bottom-nav button:not([data-nav="workouts"]){display:none}
+.focus-mode .bottom-nav{grid-template-columns:1fr}
+.focus-mode main{max-width:720px}
+@media(max-width:520px){.v04-actions{grid-template-columns:1fr}}
