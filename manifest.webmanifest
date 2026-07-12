@@ -1,7 +1,7 @@
 {
-  "name": "GymCalc One Auto",
-  "short_name": "GymCalc Auto",
-  "description": "Aplicativo completo de academia com autoevolução local, treinos, progresso e calculadoras.",
+  "name": "Corporesapiens",
+  "short_name": "Corporesapiens",
+  "description": "Treinos, cargas, progresso e ferramentas de academia com funcionamento offline e dados locais.",
   "lang": "pt-BR",
   "start_url": "./",
   "display": "standalone",
@@ -14,5 +14,6 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "id": "/"
 }
