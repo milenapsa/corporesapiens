@@ -1,0 +1,54 @@
+
+.v07-card {
+  border-color: rgba(248, 113, 113, .36);
+  background: linear-gradient(180deg, rgba(57, 18, 27, .96), rgba(10, 24, 40, .98));
+}
+
+.v07-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.v07-chip-error {
+  border-color: rgba(248,113,113,.45) !important;
+  color: #fca5a5 !important;
+}
+
+.v07-error-item {
+  padding: 13px;
+  border: 1px solid rgba(248,113,113,.28);
+  border-radius: 14px;
+  background: rgba(45, 12, 20, .52);
+}
+
+.v07-error-item p {
+  margin: 8px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.v07-safe-mode .v07-disabled-module {
+  display: none !important;
+}
+
+.v07-safe-mode::before {
+  content: "Modo seguro ativo";
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 7px 12px;
+  border: 1px solid rgba(248,113,113,.45);
+  border-radius: 999px;
+  background: rgba(69,10,10,.94);
+  color: #fecaca;
+  font-size: .76rem;
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .v07-actions {
+    grid-template-columns: 1fr;
+  }
+}
