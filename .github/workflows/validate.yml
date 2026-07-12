@@ -1,14 +1,47 @@
-name: Validate
-on: [push, pull_request]
+name: Validate Corporesapiens
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          set -e
-          test -s index.html
-          test -s sw.js
-          for f in app-core.js app-smart.js app-v*.js; do node --check "$f"; done
-          grep -q app-v08.js index.html
-          grep -q corporesapiens-v0.8.0 sw.js
+
+      - name: Validate required files
+        run: |
+          set -euo pipefail
+          for f in index.html styles.css app-core.js app-smart.js manifest.webmanifest sw.js icon.svg; do
+            test -s "$f"
+          done
+
+      - name: Validate JavaScript syntax
+        run: |
+          set -euo pipefail
+          for f in app-core.js app-smart.js app-v*.js; do
+            node --check "$f"
+          done
+
+      - name: Validate HTML references
+        run: |
+          set -euo pipefail
+          grep -q 'app-v09.js' index.html
+          grep -q 'styles-v09.css' index.html
+
+      - name: Validate service worker
+        run: |
+          set -euo pipefail
+          grep -q 'corporesapiens-v0.9.0' sw.js
+          grep -q 'app-v09.js' sw.js
+          grep -q 'styles-v09.css' sw.js
+
+      - name: Validate documentation
+        run: |
+          test -s docs/INVENTARIO.md
+          test -s docs/CANONICO.md
+          test -s docs/corporesapiens.json
+          test -s docs/CHANGELOG.md
