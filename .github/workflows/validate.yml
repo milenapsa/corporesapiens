@@ -1,0 +1,14 @@
+name: Validate
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          set -e
+          test -s index.html
+          test -s sw.js
+          for f in app-core.js app-smart.js app-v*.js; do node --check "$f"; done
+          grep -q app-v08.js index.html
+          grep -q corporesapiens-v0.8.0 sw.js
