@@ -1,7 +1,8 @@
 {
   "version": "1.0.0",
-  "status": "published",
+  "status": "published_and_operationally_verified",
   "published_at": "2026-07-12T21:45:36Z",
+  "verified_at": "2026-07-12T22:21:32Z",
   "source_versions": [
     "0.2",
     "0.3",
@@ -12,14 +13,36 @@
     "0.8",
     "0.9"
   ],
-  "browser_acceptance": "V10_PUBLIC_BROWSER_OFFLINE_ACCEPTANCE_OK",
-  "static_acceptance": "V10_FINAL_STATIC_ACCEPTANCE_OK",
+  "evidence": {
+    "static_acceptance": "V10_FINAL_STATIC_ACCEPTANCE_OK",
+    "browser_offline_acceptance": "V10_PUBLIC_BROWSER_OFFLINE_ACCEPTANCE_OK",
+    "postrelease_audit": "V10_POSTRELEASE_AUDIT_OK",
+    "restore_stage": "V10_RESTORE_STAGE_OK",
+    "device_a11y_emulation": "V10_DEVICE_A11Y_AUDIT_OK",
+    "security": "V10_SECURITY_ACCEPTANCE_OK",
+    "monitor": "V10_MONITOR_VERIFY_OK",
+    "ci_reproduction": "CI_REPRODUCTION_OK",
+    "github_actions": {
+      "run_number": 20,
+      "conclusion": "success",
+      "commit": "7923ad6276857c084ea4ec98d33283a105045979"
+    }
+  },
   "data_compatibility": "corporesapiens_state_v02 preserved",
   "offline_validation": true,
+  "security_headers": true,
+  "privacy_and_terms": true,
   "build_script": "scripts/build-v10.sh",
   "rollback": {
     "snapshot_id": 297218,
     "backup": "/docker/corporesapiens/backups/20260712214536-v10-pre",
+    "current_backup": "/docker/corporesapiens/backups/20260712221028-v10-current",
     "previous": "/docker/corporesapiens/site.previous-v09"
-  }
+  },
+  "human_validation_pending": [
+    "manual test on physical Android device",
+    "manual test on physical iPhone device",
+    "human legal review of privacy and terms",
+    "human assistive-technology review"
+  ]
 }
