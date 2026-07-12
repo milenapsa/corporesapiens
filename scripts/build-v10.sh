@@ -33,13 +33,19 @@ awk '
 ' "$ROOT/index.html" > "$OUT/index.html"
 
 sed -i -E 's/Corporesapiens 0\.[0-9]+/Corporesapiens 1.0/g' "$OUT/index.html"
-cp "$ROOT/sw.js" "$OUT/sw.js"
-sed -i -E 's/corporesapiens-v0\.[0-9]+\.0/corporesapiens-v1.0.0/g' "$OUT/sw.js"
-sed -i 's#"app-core.js"#"app-v10.js","styles-v10.css"#' "$OUT/sw.js"
-sed -i '/"app-smart.js"/d;/"app-v0[3-9]\.js"/d;/"styles-v0[3-9]\.css"/d' "$OUT/sw.js"
+
+cat > "$OUT/sw.js" <<'EOF'
+const CACHE="corporesapiens-v1.0.0";
+const ASSETS=["./","./index.html","./styles-v10.css","./app-v10.js","./manifest.webmanifest","./icon.svg"];
+self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
+self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const copy=res.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return res}).catch(()=>caches.match("./index.html"))))});
+EOF
 
 grep -q 'app-v10.js' "$OUT/index.html"
 grep -q 'styles-v10.css' "$OUT/index.html"
 grep -q 'corporesapiens-v1.0.0' "$OUT/sw.js"
+grep -q '"./app-v10.js"' "$OUT/sw.js"
+grep -q '"./styles-v10.css"' "$OUT/sw.js"
 
 echo "BUILD_V10_OK"
