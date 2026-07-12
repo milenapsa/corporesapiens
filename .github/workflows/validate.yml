@@ -10,7 +10,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Validate source JavaScript
         run: |
@@ -29,12 +29,21 @@ jobs:
           set -euo pipefail
           test -s dist-v10/app-v10.js
           test -s dist-v10/styles-v10.css
+          test -s dist-v10/privacy.html
+          test -s dist-v10/terms.html
           node --check dist-v10/app-v10.js
           grep -q 'app-v10.js' dist-v10/index.html
           grep -q 'styles-v10.css' dist-v10/index.html
           grep -q 'corporesapiens-v1.0.0' dist-v10/sw.js
-          grep -q '"./app-v10.js"' dist-v10/sw.js
-          grep -q '"./styles-v10.css"' dist-v10/sw.js
+          grep -q 'privacy.html' dist-v10/sw.js
+          grep -q 'terms.html' dist-v10/sw.js
+
+      - name: Validate security configuration
+        run: |
+          test -s nginx/default.conf
+          grep -q 'Content-Security-Policy' nginx/default.conf
+          grep -q 'Permissions-Policy' nginx/default.conf
+          grep -q 'X-Content-Type-Options' nginx/default.conf
 
       - name: Validate documentation
         run: |
