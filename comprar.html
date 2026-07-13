@@ -4,32 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#111827">
-  <meta name="description" content="Corporesapiens Essencial: organize fichas, sessões, cargas, recordes e medidas por R$ 9,90, pagamento único.">
+  <meta name="description" content="Corporesapiens Essencial por R$ 9,90, pagamento único.">
   <title>Corporesapiens Essencial — R$ 9,90</title>
   <style>
-    :root{--bg:#0b1020;--card:#111827;--soft:#1f2937;--text:#f9fafb;--muted:#cbd5e1;--accent:#22c55e;--accent2:#86efac;--line:#334155}
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#0b1020,#111827 60%,#0b1020);color:var(--text);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    main{max-width:960px;margin:auto;padding:32px 20px 64px}
-    .hero{padding:56px 0 32px;text-align:center}
-    .eyebrow{display:inline-block;padding:6px 12px;border:1px solid #2f855a;border-radius:999px;color:var(--accent2);font-weight:700}
+    :root{--bg:#0b1020;--card:#111827;--text:#f9fafb;--muted:#cbd5e1;--accent:#22c55e;--line:#334155}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1020,#111827 60%,#0b1020);color:var(--text);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:960px;margin:auto;padding:32px 20px 64px}.hero{text-align:center;padding:56px 0 32px}
+    .eyebrow{display:inline-block;padding:6px 12px;border:1px solid #2f855a;border-radius:999px;color:#86efac;font-weight:700}
     h1{font-size:clamp(2.3rem,8vw,4.8rem);line-height:1.02;margin:18px auto 16px;max-width:850px}
-    .lead{font-size:1.15rem;color:var(--muted);max-width:720px;margin:0 auto}
-    .price{font-size:3rem;font-weight:900;margin:30px 0 4px}
-    .price small{font-size:1rem;color:var(--muted);font-weight:600}
-    .cta{display:inline-block;margin-top:20px;background:var(--accent);color:#052e16;text-decoration:none;font-weight:900;padding:16px 24px;border-radius:14px;box-shadow:0 10px 30px rgba(34,197,94,.25)}
-    .cta:hover{filter:brightness(1.05)}
-    .micro{color:var(--muted);font-size:.92rem;margin-top:12px}
+    h2{margin-top:40px}.lead{font-size:1.15rem;color:var(--muted);max-width:720px;margin:auto}
+    .price{font-size:3rem;font-weight:900;margin:30px 0 4px}.price small{font-size:1rem;color:var(--muted)}
     .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:32px 0}
-    .card{background:rgba(17,24,39,.9);border:1px solid var(--line);border-radius:18px;padding:22px}
-    h2{font-size:1.7rem;margin-top:44px}
-    ul{padding-left:20px}
-    li{margin:8px 0}
+    .card{background:rgba(17,24,39,.94);border:1px solid var(--line);border-radius:18px;padding:22px}
     .highlight{border-color:#166534;background:linear-gradient(180deg,rgba(20,83,45,.35),rgba(17,24,39,.95))}
-    .faq details{border-top:1px solid var(--line);padding:16px 0}
-    .faq summary{font-weight:800;cursor:pointer}
+    .cta{display:inline-block;margin-top:20px;background:var(--accent);color:#052e16;text-decoration:none;font-weight:900;padding:16px 24px;border:0;border-radius:14px;cursor:pointer}
+    .cta:disabled{opacity:.45;cursor:not-allowed}.micro,.legal{color:var(--muted);font-size:.92rem}
+    .accept{display:flex;gap:12px;align-items:flex-start;margin:18px 0;text-align:left}.accept input{width:20px;height:20px;margin-top:3px;accent-color:var(--accent)}
+    .order{display:none;margin-top:14px;padding:10px 12px;border:1px dashed var(--line);border-radius:10px;color:#86efac;font-weight:800}
+    details{border-top:1px solid var(--line);padding:16px 0}summary{font-weight:800;cursor:pointer}
     footer{margin-top:54px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    .links a{color:var(--accent2)}
+    a{color:#86efac}
   </style>
 </head>
 <body>
@@ -39,51 +33,108 @@
     <h1>Seu treino. Seus dados. No seu aparelho.</h1>
     <p class="lead">Organize fichas, sessões, cargas, recordes e medidas em um aplicativo simples, privado e que funciona offline.</p>
     <div class="price">R$ 9,90 <small>pagamento único</small></div>
-    <a class="cta" href="https://wa.me/5548999935000?text=Ol%C3%A1%21%20Quero%20comprar%20o%20Corporesapiens%20Essencial%20por%20R%24%209%2C90." rel="noopener">Comprar pelo WhatsApp</a>
-    <p class="micro">Sem assinatura. Sem anúncios. Atendimento e liberação manual nesta primeira fase.</p>
+    <a class="cta" href="#checkout">Comprar agora</a>
+    <p class="micro">Sem assinatura. Sem anúncios. Atendimento e confirmação do pagamento pelo WhatsApp nesta fase.</p>
   </section>
+
   <section class="grid">
-    <article class="card"><h3>Funciona offline</h3><p>Depois do primeiro carregamento, você continua acessando seus registros mesmo sem internet.</p></article>
-    <article class="card"><h3>Privacidade local</h3><p>Os dados ficam no armazenamento do seu aparelho e só saem quando você exporta um backup.</p></article>
-    <article class="card"><h3>Backup e restauração</h3><p>Exporte seus dados em arquivo e restaure quando trocar de aparelho ou navegador.</p></article>
-    <article class="card"><h3>Android e iPhone</h3><p>A versão 1.0 foi validada em ambos os sistemas, inclusive como aplicativo instalado na tela inicial.</p></article>
+    <article class="card"><h3>Funciona offline</h3><p>Continue acessando seus registros depois do primeiro carregamento.</p></article>
+    <article class="card"><h3>Privacidade local</h3><p>Os dados ficam no seu aparelho e só saem quando você exporta um backup.</p></article>
+    <article class="card"><h3>Backup e restauração</h3><p>Exporte seus dados e restaure ao trocar de aparelho ou navegador.</p></article>
+    <article class="card"><h3>Android e iPhone</h3><p>Validado nos dois sistemas e instalável pela tela inicial.</p></article>
   </section>
+
   <section class="card highlight">
     <h2>O que você recebe</h2>
     <ul>
-      <li>acesso à versão Corporesapiens 1.0;</li>
+      <li>acesso ao Corporesapiens 1.0;</li>
       <li>fichas, sessões, cargas, recordes e medidas;</li>
       <li>funcionamento offline;</li>
       <li>exportação e restauração de backup;</li>
       <li>atualizações corretivas da linha 1.x;</li>
-      <li>guia rápido de instalação e primeiros passos;</li>
-      <li>suporte básico durante os primeiros 30 dias.</li>
+      <li>guia de instalação e primeiros passos;</li>
+      <li>suporte básico por 30 dias.</li>
     </ul>
   </section>
+
   <section>
-    <h2>Para quem é</h2>
-    <div class="grid">
-      <article class="card"><p>Para quem ainda usa papel, bloco de notas ou planilha para acompanhar o treino.</p></article>
-      <article class="card"><p>Para quem prefere um aplicativo direto, sem rede social, anúncios ou menus complicados.</p></article>
-      <article class="card"><p>Para quem valoriza privacidade e quer manter os dados no próprio aparelho.</p></article>
-    </div>
-  </section>
-  <section class="faq">
     <h2>Perguntas frequentes</h2>
     <details><summary>É assinatura?</summary><p>Não. O valor de R$ 9,90 é pagamento único para a versão 1.0 e atualizações corretivas da linha 1.x.</p></details>
-    <details><summary>Ele monta meu treino?</summary><p>Não. O Corporesapiens organiza os dados que você inserir e não substitui avaliação ou prescrição profissional.</p></details>
-    <details><summary>Preciso baixar pela loja?</summary><p>Não. O aplicativo pode ser instalado pela tela inicial do navegador no Android e no iPhone.</p></details>
+    <details><summary>Ele monta meu treino?</summary><p>Não. O aplicativo organiza os dados inseridos e não substitui avaliação ou prescrição profissional.</p></details>
+    <details><summary>Preciso baixar pela loja?</summary><p>Não. O aplicativo pode ser instalado pela tela inicial do navegador.</p></details>
     <details><summary>Funciona sem internet?</summary><p>Sim, depois do primeiro carregamento e da instalação do cache local.</p></details>
-    <details><summary>Onde ficam meus dados?</summary><p>No armazenamento local do aparelho. Você também pode exportar um backup.</p></details>
+    <details><summary>Onde ficam meus dados?</summary><p>No armazenamento local do seu aparelho. Você também pode exportar um backup.</p></details>
   </section>
-  <section class="hero">
+
+  <section id="checkout" class="card highlight">
     <h2>Comece por R$ 9,90</h2>
-    <a class="cta" href="https://wa.me/5548999935000?text=Ol%C3%A1%21%20Quero%20comprar%20o%20Corporesapiens%20Essencial%20por%20R%24%209%2C90." rel="noopener">Quero o Corporesapiens</a>
+    <p>O pedido será gerado no seu aparelho e enviado ao WhatsApp para confirmação manual do pagamento.</p>
+    <label class="accept">
+      <input id="acceptTerms" type="checkbox">
+      <span>Li e aceito os <a href="/terms.html" target="_blank" rel="noopener">Termos de Uso</a> e o <a href="/privacy.html" target="_blank" rel="noopener">Aviso de Privacidade</a>.</span>
+    </label>
+    <button id="buyBtn" class="cta" type="button" disabled>Gerar pedido no WhatsApp</button>
+    <div id="orderCode" class="order" aria-live="polite"></div>
+    <p class="legal">O código do pedido é criado no seu aparelho. Nenhum dado pessoal é coletado automaticamente por esta página.</p>
   </section>
+
   <footer>
-    <p>O Corporesapiens é uma ferramenta de organização pessoal. Não promete resultado físico, clínico, estético ou esportivo e não substitui orientação médica, fisioterapêutica, nutricional ou de educação física.</p>
-    <p class="links"><a href="/">Abrir aplicativo</a></p>
+    <p>O Corporesapiens é uma ferramenta de organização pessoal. Não promete resultado físico, clínico, estético ou esportivo e não substitui orientação profissional.</p>
+    <p><a href="/">Abrir aplicativo</a> · <a href="/comece.html">Guia de instalação</a> · <a href="/privacy.html">Privacidade</a> · <a href="/terms.html">Termos</a></p>
   </footer>
 </main>
+
+<script>
+(() => {
+  const checkbox = document.getElementById("acceptTerms");
+  const button = document.getElementById("buyBtn");
+  const codeBox = document.getElementById("orderCode");
+  const params = new URLSearchParams(location.search);
+
+  const getOrderCode = () => {
+    const existing = sessionStorage.getItem("corporesapiens_order_code");
+    if (existing) return existing;
+    const d = new Date();
+    const date = String(d.getFullYear()).slice(-2)
+      + String(d.getMonth() + 1).padStart(2, "0")
+      + String(d.getDate()).padStart(2, "0");
+    const random = Math.random().toString(36).slice(2, 6).toUpperCase();
+    const code = `CP-${date}-${random}`;
+    sessionStorage.setItem("corporesapiens_order_code", code);
+    return code;
+  };
+
+  checkbox.addEventListener("change", () => {
+    button.disabled = !checkbox.checked;
+  });
+
+  button.addEventListener("click", () => {
+    if (!checkbox.checked) return;
+    const code = getOrderCode();
+    const source = params.get("utm_source") || "direto";
+    const campaign = params.get("utm_campaign") || "lancamento-essencial";
+    const interest = {
+      code,
+      product: "Corporesapiens Essencial 1.0",
+      price: 9.90,
+      currency: "BRL",
+      source,
+      campaign,
+      acceptedTerms: true,
+      createdAt: new Date().toISOString()
+    };
+    localStorage.setItem("corporesapiens_sales_interest_v1", JSON.stringify(interest));
+    codeBox.textContent = `Código do pedido: ${code}`;
+    codeBox.style.display = "block";
+    const message = [
+      "Olá! Quero comprar o Corporesapiens Essencial 1.0 por R$ 9,90.",
+      `Código do pedido: ${code}`,
+      `Origem: ${source}`,
+      "Li e aceito os Termos de Uso e o Aviso de Privacidade."
+    ].join("\n");
+    window.open(`https://wa.me/5548999935000?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+  });
+})();
+</script>
 </body>
 </html>
