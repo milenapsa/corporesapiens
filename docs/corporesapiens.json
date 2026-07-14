@@ -1,47 +1,76 @@
 {
-  "schema": "corporesapiens.product-registry.v1",
+  "schema": "corporesapiens.product-registry.v2",
+  "updated_at": "2026-07-14T18:31:23Z",
   "product": {
     "name": "Corporesapiens",
-    "version": "0.5.0",
+    "version": "1.0.1",
+    "brand_release": "brand-v2",
     "url": "https://corporesapiens.homosapiens.id",
+    "sales_url": "https://corporesapiens.homosapiens.id/comprar.html",
+    "onboarding_url": "https://corporesapiens.homosapiens.id/comece.html",
     "repository": "milenapsa/corporesapiens",
     "type": "PWA",
     "language": "pt-BR",
     "data_mode": "local-first"
   },
   "runtime": {
+    "vps_id": 1799286,
     "container": "corporesapiens",
     "web_server": "nginx",
     "reverse_proxy": "caddy",
     "https": true,
-    "offline": true
+    "offline": true,
+    "persistent_site_path": "/docker/corporesapiens/site"
   },
-  "assets": [
+  "brand": {
+    "status": "approved-and-locked",
+    "direction": "off-white embossed monogram CS on graphite or dark background",
+    "master": "assets/corporesapiens-icon-offwhite-512-v2.png",
+    "production_icons": [
+      "assets/corporesapiens-icon-192.png",
+      "assets/corporesapiens-icon-512.png",
+      "assets/apple-touch-icon.png",
+      "favicon.ico"
+    ]
+  },
+  "build": {
+    "script": "scripts/build-v10.sh",
+    "output": "dist-v10",
+    "cache": "corporesapiens-v1.0.1-brand-v2",
+    "validation_workflow": ".github/workflows/validate.yml",
+    "sync_workflow": ".github/workflows/sync-production.yml",
+    "checksum_file": "PRODUCTION_SHA256SUMS.txt"
+  },
+  "public_assets": [
     "index.html",
-    "styles.css",
-    "styles-v03.css",
-    "styles-v04.css",
-    "styles-v05.css",
-    "app-core.js",
-    "app-smart.js",
-    "app-v03.js",
-    "app-v04.js",
-    "app-v05.js",
+    "app-v10.js",
+    "styles-v10.css",
     "manifest.webmanifest",
     "sw.js",
-    "icon.svg"
-  ],
-  "storage_keys": [
-    "corporesapiens_state_v02",
-    "corporesapiens_v04_preferences",
-    "corporesapiens_v05_settings"
+    "favicon.ico",
+    "comprar.html",
+    "comece.html",
+    "privacy.html",
+    "terms.html",
+    "corporesapiens-og.png",
+    "assets/apple-touch-icon.png",
+    "assets/corporesapiens-icon-192.png",
+    "assets/corporesapiens-icon-512.png"
   ],
   "release_gate": {
+    "autonomy_level": "A4",
     "backup_required": true,
     "syntax_check": true,
     "https_200": true,
     "asset_200": true,
-    "service_worker_version": "corporesapiens-v0.5.0",
+    "mobile_desktop_acceptance": true,
+    "offline_acceptance": true,
     "rollback_required": true
+  },
+  "commercial": {
+    "price_brl": 9.9,
+    "checkout": "manual-whatsapp",
+    "payment_automation": false,
+    "sales_or_payments_claimed": false
   }
 }
