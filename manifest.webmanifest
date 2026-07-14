@@ -1,19 +1,25 @@
 {
   "name": "Corporesapiens",
   "short_name": "Corporesapiens",
-  "description": "Treinos, cargas, progresso e ferramentas de academia com funcionamento offline e dados locais.",
-  "lang": "pt-BR",
+  "description": "Organização pessoal de fichas, sessões, cargas, recordes e medidas.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#07111f",
-  "theme_color": "#07111f",
+  "orientation": "any",
+  "background_color": "#f3f1ec",
+  "theme_color": "#111113",
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "./assets/corporesapiens-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/corporesapiens-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "id": "/"
+  ]
 }
