@@ -1,42 +1,71 @@
 # Canônico do Produto — Corporesapiens
 
-**Versão canônica:** 0.5.0
+**Versão canônica:** 1.0.1 — Brand v2  
+**Estado:** produção online, build reproduzível, marca principal travada.
 
 ## Identidade
-Nome oficial: Corporesapiens  
-Assinatura: Seu treino, suas cargas e sua evolução.  
-Domínio oficial: corporesapiens.homosapiens.id
 
-## Princípios
-1. Registro rápido.
-2. Clareza para pessoas leigas.
-3. Funcionamento em celular.
-4. Privacidade local.
-5. Uso offline.
-6. Sugestões explicáveis.
-7. Nenhuma promessa de resultado.
+- Nome oficial: Corporesapiens
+- Domínio oficial: https://corporesapiens.homosapiens.id
+- Marca principal aprovada: monograma CS em off-white, com relevo elegante e fundo grafite/escuro.
+- Regra de uso: não redesenhar, substituir ou reinterpretar o símbolo sem nova aprovação expressa.
+- Arquivo master: `assets/corporesapiens-icon-offwhite-512-v2.png`
 
-## Regras
-- dados ficam no aparelho por padrão;
-- nenhuma conta é obrigatória;
-- modelos são editáveis e não constituem prescrição;
-- atualizações não podem apagar dados existentes;
-- backups devem ser exportáveis;
-- sugestões precisam indicar sua base;
-- funções críticas devem ter estado vazio compreensível.
+## Produto
 
-## Saúde e segurança
-O Corporesapiens não substitui profissional de educação física, médico ou nutricionista. Não diagnostica lesão, não prescreve carga, não recomenda substâncias e não promete hipertrofia ou emagrecimento.
+PWA local-first para organização pessoal de fichas, sessões, cargas, recordes e medidas.
 
-## Arquitetura
-- app-core.js: núcleo;
-- app-smart.js: inteligência local;
-- app-v03.js: biblioteca e gráficos;
-- app-v04.js: metas e consistência;
-- app-v05.js: histórico detalhado, metas pessoais e central de dados.
+Princípios:
+1. uso simples em celular;
+2. dados locais por padrão;
+3. funcionamento offline;
+4. clareza para pessoas leigas;
+5. nenhuma promessa de resultado físico ou médico.
+
+## Build oficial
+
+O artefato oficial é gerado por:
+
+```sh
+scripts/build-v10.sh . dist-v10
+```
+
+Saídas obrigatórias:
+- `index.html`
+- `app-v10.js`
+- `styles-v10.css`
+- `manifest.webmanifest`
+- `sw.js`
+- `favicon.ico`
+- ícones 180, 192 e 512 px
+- páginas comercial, onboarding, privacidade e termos
+- `PRODUCTION_SHA256SUMS.txt`
+
+Cache oficial: `corporesapiens-v1.0.1-brand-v2`.
 
 ## Gate de publicação
-Toda publicação exige pré-voo, backup, validação de sintaxe, atualização do Service Worker, teste HTTPS, teste dos ativos, verificação da versão e rollback identificado.
+
+Toda publicação real é A4 e exige:
+- backup ou snapshot recuperável;
+- escopo exato;
+- build e validação;
+- teste HTTPS e ativos;
+- teste mobile e desktop;
+- teste de instalação/offline;
+- rollback identificado;
+- evidência técnica antes de afirmar conclusão.
 
 ## Definição de pronto
-Uma versão só é considerada publicada quando HTTPS e ativos respondem 200, o JavaScript passa em node --check, o HTML referencia os módulos corretos, o Service Worker usa o cache da versão e existe evidência de backup.
+
+Uma versão só está pronta quando:
+- produção responde por HTTPS;
+- marca e ícones aprovados estão presentes;
+- manifest e service worker apontam para os ativos corretos;
+- build do GitHub reproduz a versão publicada;
+- validações automatizadas passam;
+- backup e rollback permanecem disponíveis;
+- canônico, inventário e JSON refletem o estado real.
+
+## Limites
+
+O Corporesapiens não substitui profissional de educação física, médico ou nutricionista. Não diagnostica, prescreve ou promete hipertrofia, emagrecimento ou qualquer resultado.
