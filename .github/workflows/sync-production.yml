@@ -20,4 +20,56 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE=
+          BASE="https://corporesapiens.homosapiens.id"
+          mkdir -p assets
+
+          files=(
+            index.html
+            app-v10.js
+            styles-v10.css
+            manifest.webmanifest
+            sw.js
+            favicon.ico
+            comprar.html
+            comece.html
+            terms.html
+            privacy.html
+            corporesapiens-og.png
+            assets/apple-touch-icon.png
+            assets/corporesapiens-icon-192.png
+            assets/corporesapiens-icon-512.png
+          )
+
+          for file in "${files[@]}"; do
+            mkdir -p "$(dirname "$file")"
+            curl --fail --silent --show-error --location               --retry 4 --retry-all-errors               "$BASE/$file?sync=${GITHUB_SHA}"               --output "$file"
+            test -s "$file"
+          done
+
+          grep -q 'app-v10.js' index.html
+          grep -q 'styles-v10.css' index.html
+          grep -q 'apple-touch-icon.png' index.html
+          grep -q 'corporesapiens-icon-512.png' manifest.webmanifest
+          grep -q 'corporesapiens-v1.0.1-brand-v2' sw.js
+          file assets/corporesapiens-icon-192.png | grep -q 'PNG image data, 192 x 192'
+          file assets/corporesapiens-icon-512.png | grep -q 'PNG image data, 512 x 512'
+          file assets/apple-touch-icon.png | grep -q 'PNG image data, 180 x 180'
+
+          sha256sum "${files[@]}" | tee PRODUCTION_SHA256SUMS.txt
+
+      - name: Commit synchronized production snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             index.html app-v10.js styles-v10.css manifest.webmanifest sw.js favicon.ico             comprar.html comece.html terms.html privacy.html corporesapiens-og.png             assets/apple-touch-icon.png assets/corporesapiens-icon-192.png             assets/corporesapiens-icon-512.png PRODUCTION_SHA256SUMS.txt
+
+          if git diff --cached --quiet; then
+            echo "PRODUCTION_ALREADY_SYNCHRONIZED"
+            exit 0
+          fi
+
+          git commit -m "chore: synchronize validated production snapshot"
+          git push
+          echo "PRODUCTION_SYNC_COMMITTED_OK"
