@@ -1,0 +1,23 @@
+name: Sync production snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/sync-production.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Capture and validate production
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=
