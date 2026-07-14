@@ -1,0 +1,41 @@
+name: Extract canonical sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/extract-source.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract canonical sources
+        run: |
+          set -euo pipefail
+          mkdir -p src
+          gzip -dc dist/index.html.gz > src/index.base.html
+          gzip -dc dist/styles.css.gz > src/styles.base.css
+          gzip -dc dist/app-core.js.gz > src/app-core.js
+          gzip -dc dist/app-smart.js.gz > src/app-smart.js
+          test -s src/index.base.html
+          test -s src/styles.base.css
+          node --check src/app-core.js
+          node --check src/app-smart.js
+      - name: Commit extracted sources
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src
+          if git diff --cached --quiet; then
+            echo "SOURCES_ALREADY_EXTRACTED"
+            exit 0
+          fi
+          git commit -m "chore: extract canonical sources"
+          git push
