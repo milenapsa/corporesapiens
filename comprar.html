@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#111827">
   <meta name="description" content="Corporesapiens Essencial por R$ 9,90, pagamento único.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Corporesapiens Essencial — R$ 9,90">
+  <meta property="og:description" content="Organize fichas, cargas, sessões, recordes e medidas. Funciona offline no Android e iPhone.">
+  <meta property="og:url" content="https://corporesapiens.homosapiens.id/comprar.html">
+  <meta property="og:image" content="https://corporesapiens.homosapiens.id/corporesapiens-og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Corporesapiens Essencial — R$ 9,90">
+  <meta name="twitter:description" content="Seu treino. Seus dados. No seu aparelho.">
+  <meta name="twitter:image" content="https://corporesapiens.homosapiens.id/corporesapiens-og.png">
   <title>Corporesapiens Essencial — R$ 9,90</title>
   <style>
     :root{--bg:#0b1020;--card:#111827;--text:#f9fafb;--muted:#cbd5e1;--accent:#22c55e;--line:#334155}
@@ -18,7 +31,9 @@
     .card{background:rgba(17,24,39,.94);border:1px solid var(--line);border-radius:18px;padding:22px}
     .highlight{border-color:#166534;background:linear-gradient(180deg,rgba(20,83,45,.35),rgba(17,24,39,.95))}
     .cta{display:inline-block;margin-top:20px;background:var(--accent);color:#052e16;text-decoration:none;font-weight:900;padding:16px 24px;border:0;border-radius:14px;cursor:pointer}
-    .cta:disabled{opacity:.45;cursor:not-allowed}.micro,.legal{color:var(--muted);font-size:.92rem}
+    .cta:disabled{opacity:.45;cursor:not-allowed}
+    .share-btn{margin-left:10px;background:#1F2937;color:#F8FAFC;border:1px solid #475569}
+    .share-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:12px}.micro,.legal{color:var(--muted);font-size:.92rem}
     .accept{display:flex;gap:12px;align-items:flex-start;margin:18px 0;text-align:left}.accept input{width:20px;height:20px;margin-top:3px;accent-color:var(--accent)}
     .order{display:none;margin-top:14px;padding:10px 12px;border:1px dashed var(--line);border-radius:10px;color:#86efac;font-weight:800}
     details{border-top:1px solid var(--line);padding:16px 0}summary{font-weight:800;cursor:pointer}
@@ -33,7 +48,10 @@
     <h1>Seu treino. Seus dados. No seu aparelho.</h1>
     <p class="lead">Organize fichas, sessões, cargas, recordes e medidas em um aplicativo simples, privado e que funciona offline.</p>
     <div class="price">R$ 9,90 <small>pagamento único</small></div>
-    <a class="cta" href="#checkout">Comprar agora</a>
+    <div class="share-row">
+      <a class="cta" href="#checkout">Comprar agora</a>
+      <button id="shareBtn" class="cta share-btn" type="button">Compartilhar</button>
+    </div>
     <p class="micro">Sem assinatura. Sem anúncios. Atendimento e confirmação do pagamento pelo WhatsApp nesta fase.</p>
   </section>
 
@@ -90,6 +108,7 @@
   const button = document.getElementById("buyBtn");
   const codeBox = document.getElementById("orderCode");
   const params = new URLSearchParams(location.search);
+  const shareBtn = document.getElementById("shareBtn");
 
   const getOrderCode = () => {
     const existing = sessionStorage.getItem("corporesapiens_order_code");
@@ -106,6 +125,24 @@
 
   checkbox.addEventListener("change", () => {
     button.disabled = !checkbox.checked;
+  });
+
+
+  shareBtn.addEventListener("click", async () => {
+    const shareData = {
+      title: "Corporesapiens Essencial — R$ 9,90",
+      text: "Organize fichas, cargas, sessões, recordes e medidas. Funciona offline no Android e iPhone.",
+      url: location.href
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(location.href);
+        shareBtn.textContent = "Link copiado";
+        setTimeout(() => { shareBtn.textContent = "Compartilhar"; }, 1800);
+      }
+    } catch (_) {}
   });
 
   button.addEventListener("click", () => {
