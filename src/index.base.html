@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Corporesapiens: treinos, cargas, cronômetro, progresso e calculadoras em um único aplicativo.">
+  <title>Corporesapiens 0.2</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">CS</span>
+      <div>
+        <p class="eyebrow">TREINO · PROGRESSO · PRIVACIDADE</p>
+        <h1>Corporesapiens</h1>
+      </div>
+    </div>
+    <button id="installBtn" class="button secondary compact hidden" type="button">Instalar</button>
+  </header>
+
+  <main id="app">
+    <section id="homeView" class="view active" data-view="home">
+      <div class="hero card">
+        <div>
+          <p class="eyebrow">SEU PAINEL</p>
+          <h2 id="homeGreeting">Pronto para treinar?</h2>
+          <p id="homeSub" class="muted">Monte seu treino ou continue de onde parou.</p>
+        </div>
+        <button id="homePrimaryBtn" class="button primary" type="button">Criar primeiro treino</button>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat card"><span>Treinos no mês</span><strong id="statMonth">0</strong></article>
+        <article class="stat card"><span>Sequência</span><strong id="statStreak">0 dias</strong></article>
+        <article class="stat card"><span>Volume total</span><strong id="statVolume">0 kg</strong></article>
+        <article class="stat card"><span>Recordes</span><strong id="statRecords">0</strong></article>
+      </div>
+
+      <div class="card">
+        <div class="section-head">
+          <div><p class="eyebrow">ACESSO RÁPIDO</p><h2>Ferramentas</h2></div>
+        </div>
+        <div class="quick-grid">
+          <button class="quick" data-open-tool="plates"><span>▰</span><b>Anilhas</b><small>Monte a barra</small></button>
+          <button class="quick" data-open-tool="timer"><span>◷</span><b>Cronômetro</b><small>Controle o descanso</small></button>
+          <button class="quick" data-open-tool="onerm"><span>1RM</span><b>Carga estimada</b><small>Estimativa matemática</small></button>
+          <button class="quick" data-open-tool="pace"><span>↗</span><b>Corrida</b><small>Ritmo e esteira</small></button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-head">
+          <div><p class="eyebrow">ÚLTIMA ATIVIDADE</p><h2>Resumo</h2></div>
+          <button class="link-btn" data-nav="progress" type="button">Ver histórico</button>
+        </div>
+        <div id="lastSession"></div>
+      </div>
+    </section>
+
+    <section id="workoutsView" class="view" data-view="workouts">
+      <div id="activeWorkoutMount"></div>
+
+      <div class="card">
+        <div class="section-head">
+          <div><p class="eyebrow">MEUS TREINOS</p><h2>Fichas e rotinas</h2></div>
+          <button id="newPlanBtn" class="button primary compact" type="button">+ Novo</button>
+        </div>
+        <p class="muted">Crie e registre o treino fornecido pelo seu profissional ou sua própria rotina. O aplicativo não prescreve exercícios.</p>
+        <div id="plansList" class="stack"></div>
+      </div>
+    </section>
+
+    <section id="toolsView" class="view" data-view="tools">
+      <div class="segmented" role="tablist" aria-label="Ferramentas">
+        <button class="active" data-tool-tab="plates" type="button">Anilhas</button>
+        <button data-tool-tab="timer" type="button">Timer</button>
+        <button data-tool-tab="onerm" type="button">1RM</button>
+        <button data-tool-tab="pace" type="button">Corrida</button>
+      </div>
+
+      <div class="tool-panel active" data-tool-panel="plates">
+        <div class="card">
+          <p class="eyebrow">CALCULADORA</p>
+          <h2>Montagem da barra</h2>
+          <div class="form-grid cols-2">
+            <label>Peso desejado<input id="plateTarget" type="number" min="0" step="0.5" value="100" inputmode="decimal"></label>
+            <label>Peso da barra<input id="plateBar" type="number" min="0" step="0.5" value="20" inputmode="decimal"></label>
+            <label>Presilhos (total)<input id="plateCollars" type="number" min="0" step="0.5" value="0" inputmode="decimal"></label>
+            <label>Unidade<select id="plateUnit"><option value="kg">kg</option><option value="lb">lb</option></select></label>
+          </div>
+          <label>Anilhas disponíveis (separadas por vírgula)
+            <input id="plateInventory" type="text" value="20, 15, 10, 5, 2.5, 1.25">
+          </label>
+          <button id="calcPlatesBtn" class="button primary wide" type="button">Calcular montagem</button>
+        </div>
+        <div id="plateResult" class="card result-card"></div>
+        <div class="card">
+          <div class="section-head"><div><p class="eyebrow">AQUECIMENTO</p><h2>Etapas configuráveis</h2></div></div>
+          <label>Percentuais<input id="warmupPercents" type="text" value="40, 60, 80, 100"></label>
+          <button id="warmupBtn" class="button secondary wide" type="button">Gerar com as anilhas disponíveis</button>
+          <div id="warmupResult" class="stack top-gap"></div>
+        </div>
+      </div>
+
+      <div class="tool-panel" data-tool-panel="timer">
+        <div class="card timer-card">
+          <p class="eyebrow">DESCANSO / INTERVALO</p>
+          <div id="timerDisplay" class="timer-display">01:30</div>
+          <div class="timer-presets">
+            <button data-timer-seconds="30">30s</button>
+            <button data-timer-seconds="60">60s</button>
+            <button class="active" data-timer-seconds="90">90s</button>
+            <button data-timer-seconds="120">2m</button>
+            <button data-timer-seconds="180">3m</button>
+          </div>
+          <div class="form-grid cols-2 top-gap">
+            <button id="timerStartBtn" class="button primary" type="button">Iniciar</button>
+            <button id="timerResetBtn" class="button secondary" type="button">Reiniciar</button>
+          </div>
+          <label class="toggle"><span>Repetir automaticamente</span><input id="timerRepeat" type="checkbox"></label>
+        </div>
+      </div>
+
+      <div class="tool-panel" data-tool-panel="onerm">
+        <div class="card">
+          <p class="eyebrow">ESTIMATIVA MATEMÁTICA</p>
+          <h2>Calculadora de 1RM</h2>
+          <p class="muted">Estimativa baseada em fórmulas conhecidas. Não é recomendação de carga nem avaliação de segurança.</p>
+          <div class="form-grid cols-2">
+            <label>Carga utilizada<input id="rmWeight" type="number" min="0" step="0.5" value="60"></label>
+            <label>Repetições<input id="rmReps" type="number" min="1" max="20" step="1" value="8"></label>
+          </div>
+          <button id="calcRmBtn" class="button primary wide" type="button">Calcular estimativa</button>
+        </div>
+        <div id="rmResult" class="card result-card"></div>
+      </div>
+
+      <div class="tool-panel" data-tool-panel="pace">
+        <div class="card">
+          <p class="eyebrow">CORRIDA E ESTEIRA</p>
+          <h2>Ritmo, tempo e velocidade</h2>
+          <div class="form-grid cols-2">
+            <label>Distância (km)<input id="paceDistance" type="number" min="0.1" step="0.1" value="5"></label>
+            <label>Tempo (hh:mm:ss)<input id="paceTime" type="text" value="00:30:00"></label>
+          </div>
+          <button id="calcPaceBtn" class="button primary wide" type="button">Calcular</button>
+        </div>
+        <div id="paceResult" class="card result-card"></div>
+      </div>
+    </section>
+
+    <section id="progressView" class="view" data-view="progress">
+      <div class="segmented progress-tabs">
+        <button class="active" data-progress-tab="history">Histórico</button>
+        <button data-progress-tab="attendance">Frequência</button>
+        <button data-progress-tab="records">Recordes</button>
+        <button data-progress-tab="body">Medidas</button>
+      </div>
+
+      <div class="progress-panel active" data-progress-panel="history">
+        <div class="card">
+          <div class="section-head"><div><p class="eyebrow">SESSÕES</p><h2>Histórico de treinos</h2></div></div>
+          <div id="historyList" class="stack"></div>
+        </div>
+      </div>
+
+      <div class="progress-panel" data-progress-panel="attendance">
+        <div class="card">
+          <div class="section-head">
+            <div><p class="eyebrow">CONSISTÊNCIA</p><h2 id="calendarTitle">Frequência</h2></div>
+            <div class="inline-actions"><button id="calPrev" class="icon-btn">‹</button><button id="calNext" class="icon-btn">›</button></div>
+          </div>
+          <div class="calendar-week"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+          <div id="calendar" class="calendar"></div>
+          <button id="markTodayBtn" class="button secondary wide top-gap" type="button">Marcar presença hoje</button>
+        </div>
+      </div>
+
+      <div class="progress-panel" data-progress-panel="records">
+        <div class="card">
+          <div class="section-head"><div><p class="eyebrow">MELHORES MARCAS</p><h2>Recordes pessoais</h2></div><button id="addRecordBtn" class="button primary compact">+ Adicionar</button></div>
+          <div id="recordsList" class="stack"></div>
+        </div>
+      </div>
+
+      <div class="progress-panel" data-progress-panel="body">
+        <div class="card">
+          <div class="section-head"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Medidas corporais</h2></div><button id="addMeasurementBtn" class="button primary compact">+ Registrar</button></div>
+          <p class="muted">Registro pessoal, sem interpretação médica. As informações ficam neste aparelho.</p>
+          <div id="measurementsList" class="stack"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="moreView" class="view" data-view="more">
+      <div class="card">
+        <div class="section-head"><div><p class="eyebrow">APARELHOS</p><h2>Minhas regulagens</h2></div><button id="addEquipmentBtn" class="button primary compact">+ Adicionar</button></div>
+        <p class="muted">Salve apenas suas anotações. O aplicativo não recomenda ajustes de segurança.</p>
+        <div id="equipmentList" class="stack"></div>
+      </div>
+
+
+      <div class="card smart-card">
+        <div class="section-head">
+          <div><p class="eyebrow">MOTOR INTELIGENTE LOCAL</p><h2>Autoevolução</h2></div>
+          <button id="refreshInsightsBtn" class="button primary compact" type="button">Analisar</button>
+        </div>
+        <p class="muted">Analisa somente seus registros locais. As sugestões são organizacionais e matemáticas, não prescrição profissional.</p>
+        <div id="smartSummary" class="smart-summary"></div>
+        <div class="smart-actions">
+          <button id="autoCloneBtn" class="button secondary" type="button">Clonar melhor treino</button>
+          <button id="autoVariantBtn" class="button secondary" type="button">Criar variação</button>
+          <button id="autoWeekBtn" class="button secondary" type="button">Montar semana</button>
+          <button id="detectPrBtn" class="button secondary" type="button">Detectar recordes</button>
+        </div>
+        <div id="smartInsights" class="stack top-gap"></div>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">DADOS</p><h2>Backup e portabilidade</h2>
+        <div class="form-grid cols-2">
+          <button id="exportDataBtn" class="button secondary">Exportar backup</button>
+          <label class="button secondary file-label">Importar backup<input id="importDataInput" type="file" accept="application/json" hidden></label>
+        </div>
+        <button id="clearDataBtn" class="button danger wide top-gap">Apagar dados deste aparelho</button>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">PRIVACIDADE E LIMITES</p>
+        <h2>Local por padrão</h2>
+        <p class="muted">Sem conta e sem servidor de dados. Treinos, medidas e preferências são armazenados no navegador. Corporesapiens é uma ferramenta de registro e cálculo; não substitui profissional de educação física, médico ou nutricionista.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navegação principal">
+    <button class="active" data-nav="home"><span>⌂</span><small>Início</small></button>
+    <button data-nav="workouts"><span>▤</span><small>Treinos</small></button>
+    <button data-nav="tools"><span>⊕</span><small>Ferramentas</small></button>
+    <button data-nav="progress"><span>↗</span><small>Progresso</small></button>
+    <button data-nav="more"><span>•••</span><small>Mais</small></button>
+  </nav>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-sheet">
+      <div class="modal-head"><h2 id="modalTitle">Editar</h2><button class="icon-btn" data-close-modal>×</button></div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app-core.js"></script>
+  <script src="app-smart.js"></script>
+</body>
+</html>
