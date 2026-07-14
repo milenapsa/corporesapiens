@@ -1,4 +1,4 @@
-: refinamento visual Corporesapiens 1.0.1 / Brand v2 */
+/* refinamento visual Corporesapiens 1.0.1 / Brand v2 */
 :root {
   --bg-deep: #0b100f;
   --bg-surface: #131716;
@@ -18,7 +18,7 @@
   --radius-lg: 22px;
   --radius-md: 16px;
   --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.28);
-  --shado-emboss: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-emboss: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
 html, body {
@@ -90,7 +90,7 @@ main {
     var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-soft), var(--shado-emboss);
+  box-shadow: var(--shadow-soft), var(--shadow-emboss);
   overflow: hidden;
 }
 
@@ -121,7 +121,7 @@ main {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), transparent), var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shado-emboss);
+  box-shadow: var(--shadow-emboss);
 }
 
 .stat strong {
