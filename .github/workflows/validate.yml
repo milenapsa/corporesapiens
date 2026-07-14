@@ -10,7 +10,12 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
 
       - name: Validate incremental JavaScript
         run: |
@@ -19,7 +24,7 @@ jobs:
             node --check "$f"
           done
 
-      - name: Build consolidated 1.0
+      - name: Build consolidated 1.0 brand v2
         run: |
           chmod +x scripts/build-v10.sh
           scripts/build-v10.sh . dist-v10
@@ -31,12 +36,22 @@ jobs:
           test -s dist-v10/styles-v10.css
           test -s dist-v10/privacy.html
           test -s dist-v10/terms.html
+          test -s dist-v10/comprar.html
+          test -s dist-v10/comece.html
+          test -s dist-v10/favicon.ico
+          test -s dist-v10/assets/apple-touch-icon.png
+          test -s dist-v10/assets/corporesapiens-icon-192.png
+          test -s dist-v10/assets/corporesapiens-icon-512.png
+          test -s dist-v10/PRODUCTION_SHA256SUMS.txt
           node --check dist-v10/app-v10.js
           grep -q 'app-v10.js' dist-v10/index.html
           grep -q 'styles-v10.css' dist-v10/index.html
-          grep -q 'corporesapiens-v1.0.0' dist-v10/sw.js
-          grep -q 'privacy.html' dist-v10/sw.js
-          grep -q 'terms.html' dist-v10/sw.js
+          grep -q 'apple-touch-icon.png' dist-v10/index.html
+          grep -q 'corporesapiens-v1.0.1-brand-v2' dist-v10/sw.js
+          grep -q 'corporesapiens-icon-512.png' dist-v10/manifest.webmanifest
+          file dist-v10/assets/corporesapiens-icon-192.png | grep -q 'PNG image data, 192 x 192'
+          file dist-v10/assets/corporesapiens-icon-512.png | grep -q 'PNG image data, 512 x 512'
+          file dist-v10/assets/apple-touch-icon.png | grep -q 'PNG image data, 180 x 180'
 
       - name: Validate security configuration
         run: |
