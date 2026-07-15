@@ -1,0 +1,42 @@
+{
+  "schema": "corporesapiens.handoff-checksums.v1",
+  "generated_at_utc": "2026-07-15T11:58:41+00:00",
+  "files": {
+    "AVISO_NOVA_JANELA_GPT.md": {
+      "sha256": "4bc1b04426d5f96fc422e5517fe0f77bd5a993c09ce074e996e2d6fc083e75d6",
+      "bytes": 1997
+    },
+    "CANONICO_CORPORESAPIENS_TRANSICAO_GPT.md": {
+      "sha256": "939973b554fe2ff65127d9f00a6580bf0cc3cbc2f8305303ace4cbc836c47a90",
+      "bytes": 7775
+    },
+    "CORPORESAPIENS_BRAND_MASTER_BOARD_APPROVED_v1.png": {
+      "sha256": "b58b3288480c3f5df888c2635d98b59075e41519d2cf7de4c9027eb37531b94f",
+      "bytes": 1820864
+    },
+    "CORPORESAPIENS_BRAND_WHITE_EMBOSS_REFERENCE_PANEL_v1.png": {
+      "sha256": "5e1e8b4541a9f5ce6da2ae197ca5cc5796a9860910ebabe2c7baccf012838df5",
+      "bytes": 47084
+    },
+    "CORPORESAPIENS_STATE_HANDOFF_2026-07-15.json": {
+      "sha256": "9f57ed1ab2313cb2d27e3a87be4d064bac940bbaf81374a7f60e31a85a5eb406",
+      "bytes": 5808
+    },
+    "EVIDENCIA_VISUAL_2026-07-15_08-49-29.png": {
+      "sha256": "ab31461d197a7f44d27c74e0cdf5d273dd0e737ced8fd8beffe1e9a168d7aeb8",
+      "bytes": 1066645
+    },
+    "INVENTARIO_CORPORESAPIENS_2026-07-15.md": {
+      "sha256": "8d9b2571720e2c4c61791706121b753f2b6c9f974e6e1991bd4bdb3ec2f7610e",
+      "bytes": 4905
+    },
+    "PORTA_UNICA_CANONICO_REFERENCIA_v10_6.md": {
+      "sha256": "cf6ec7d66eb3c57f3203c83818aca3a10284956ddc3b4fec3627c043bfd861f6",
+      "bytes": 40681
+    },
+    "README_PRIMEIRO.md": {
+      "sha256": "c7ddb31a1a0bce65f0cd7d360b854d1a42dd3bf512e54e7560ca7a20b1fda562",
+      "bytes": 863
+    }
+  }
+}
