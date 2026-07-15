@@ -1,0 +1,168 @@
+{
+  "schema": "corporesapiens.handoff-state.v1",
+  "snapshot_version": "2026-07-15.1",
+  "generated_at_utc": "2026-07-15T11:58:41+00:00",
+  "scope": "Corporesapiens product, brand, production, repository and GPT window transition",
+  "governance": {
+    "porta_unica_canonical_file": "PORTA_UNICA_CANONICO_REFERENCIA_v10_6.md",
+    "porta_unica_canonical_sha256": "cf6ec7d66eb3c57f3203c83818aca3a10284956ddc3b4fec3627c043bfd861f6",
+    "execution_matrix": "A0-A4 embedded in Porta Única canonical",
+    "this_package_action_level": "A3",
+    "production_modified_by_this_package": false
+  },
+  "product": {
+    "name": "Corporesapiens",
+    "functional_version": "1.0.1",
+    "visual_baseline": "UI V12",
+    "brand_release": "Brand v2 / CS off-white relief direction",
+    "url": "https://corporesapiens.homosapiens.id",
+    "repo": "milenapsa/corporesapiens",
+    "branch": "main",
+    "type": "PWA local-first",
+    "language": "pt-BR",
+    "data_mode": "browser-local by default"
+  },
+  "visual_state": {
+    "human_evidence_file": "EVIDENCIA_VISUAL_2026-07-15_08-49-29.png",
+    "human_evidence_sha256": "ab31461d197a7f44d27c74e0cdf5d273dd0e737ced8fd8beffe1e9a168d7aeb8",
+    "observed_at_local": "2026-07-15T08:49:29-03:00",
+    "observed": [
+      "graphite unified surfaces",
+      "off-white primary CTA",
+      "warm gray secondary text",
+      "subtle gold eyebrow",
+      "light brand mark visible in header",
+      "no dominant navy cards",
+      "no dominant purple goal panel",
+      "dark bottom navigation"
+    ]
+  },
+  "brand": {
+    "status": "direction approved; production bitmap provisional",
+    "approved_direction": [
+      "CS relationship",
+      "white/off-white",
+      "subtle elegant emboss",
+      "graphite/charcoal background",
+      "high-end fitness apparel language"
+    ],
+    "authoritative_board_file": "CORPORESAPIENS_BRAND_MASTER_BOARD_APPROVED_v1.png",
+    "authoritative_board_sha256": "b58b3288480c3f5df888c2635d98b59075e41519d2cf7de4c9027eb37531b94f",
+    "reference_panel_file": "CORPORESAPIENS_BRAND_WHITE_EMBOSS_REFERENCE_PANEL_v1.png",
+    "reference_panel_sha256": "5e1e8b4541a9f5ce6da2ae197ca5cc5796a9860910ebabe2c7baccf012838df5",
+    "production_asset_caveat": "Current header bitmap was rebuilt from a fallback favicon and is not proof of exact master fidelity.",
+    "forbidden_without_new_approval": [
+      "new symbol concept",
+      "green neon identity",
+      "dominant navy card system",
+      "dominant purple panel",
+      "generic pulse, dumbbell, shield or circle marks"
+    ]
+  },
+  "runtime": {
+    "provider": "Hostinger VPS",
+    "vps_id": 1799286,
+    "project": "corporesapiens",
+    "web_server": "nginx",
+    "reverse_proxy": "caddy",
+    "https_observed": true,
+    "public_volume": "/docker/corporesapiens/site",
+    "backup_root": "/docker/corporesapiens/backups",
+    "known_public_files": [
+      "index.html",
+      "app-v10.js",
+      "styles-v10.css",
+      "styles-v11.css",
+      "styles-v12.css",
+      "manifest.webmanifest",
+      "sw.js",
+      "favicon.ico",
+      "assets/corporesapiens-icon-512.png",
+      "assets/corporesapiens-icon-192.png",
+      "assets/apple-touch-icon.png",
+      "comprar.html",
+      "comece.html",
+      "privacy.html",
+      "terms.html"
+    ],
+    "known_backup_dirs": [
+      "20260715112409-brandmark-final-restore-v2",
+      "20260715131826-brandmark-css-override-v2",
+      "20260715133010-css-v11-cutover-v2",
+      "20260715140815-brandmark-inline-final",
+      "20260715143313-ui-v12-finalize",
+      "20260715144035-ui-v12-inline-final"
+    ]
+  },
+  "technical_evidence": {
+    "markers": [
+      "CORPORESAPIENS_BRANDMARK_INLINE_PROOF_OK",
+      "CORPORESAPIENS_UI_V12_INLINE_PROOF_OK"
+    ],
+    "tested_profiles": [
+      "mobile",
+      "desktop"
+    ],
+    "no_horizontal_overflow_at_test_time": true,
+    "png_content_type_verified_at_test_time": true,
+    "hostinger_api_note": "Intermittent VPS:9999 errors occurred during container/log queries."
+  },
+  "repository": {
+    "status": "partially behind production",
+    "current_root_css_observed": "styles-v10.css",
+    "production_css_observed": "styles-v12.css",
+    "critical_divergence": true,
+    "risk": "Deploying current repository state without reconciliation may overwrite UI V12.",
+    "required_before_deploy": [
+      "export effective production",
+      "diff index, CSS, service worker and assets",
+      "commit production-equivalent source",
+      "make build reproducible",
+      "run functional and visual acceptance",
+      "backup and publish only after A4 approval"
+    ]
+  },
+  "pending": [
+    {
+      "id": "P1",
+      "priority": "critical",
+      "item": "Synchronize production UI V12 into GitHub."
+    },
+    {
+      "id": "P2",
+      "priority": "high",
+      "item": "Replace fallback-derived header bitmap with faithful canonical master."
+    },
+    {
+      "id": "P3",
+      "priority": "high",
+      "item": "Remove temporary inline CSS after clean stylesheet consolidation."
+    },
+    {
+      "id": "P4",
+      "priority": "high",
+      "item": "Update official build and service worker to the same visual version."
+    },
+    {
+      "id": "P5",
+      "priority": "medium",
+      "item": "Run full functional, accessibility and offline tests."
+    },
+    {
+      "id": "P6",
+      "priority": "medium",
+      "item": "Audit and archive superseded assets only after snapshot."
+    }
+  ],
+  "handoff": {
+    "notice_file": "AVISO_NOVA_JANELA_GPT.md",
+    "first_action": "Read-only reconciliation diagnosis. No deploy.",
+    "do_not_assume": [
+      "GitHub equals production",
+      "current bitmap equals final master",
+      "a queued Docker project completed",
+      "a technical marker is permanent current-state proof",
+      "new GPT window has conversation memory"
+    ]
+  }
+}
